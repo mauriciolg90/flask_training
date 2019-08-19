@@ -1,0 +1,14 @@
+<html>
+<body>
+<h1>Books</h1>
+<a href="{{url_for('add_book')}}"><button>Add a book</button></a>
+<ol>
+    {% for book in books %}
+    <li> {{book.title}} by {{book.author}}</li>
+    <a href="{{url_for('update_book', book_id = book.id)}}">Update</a>
+    <a href="{{url_for('delete_book', book_id = book.id)}}" style="margin-left: 10px;">Delete</a>
+    <br> <br>
+    {% endfor %}
+</ol>
+</body>
+</html>
