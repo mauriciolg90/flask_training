@@ -1,20 +1,21 @@
 # For routing and queries on the model
-from src.models.indicators import Indicators, session
 from flask import Flask, jsonify, request
+from ...src.models.indicators import Indicators, session
 
-app = Flask(__name__)
+core = Flask(__name__)
 
 """
     Returns a list of countries filtering by:
         INDICATOR: SW_LIFS (Life satisfaction)
         INEQUALITY: TOT (Total)
         VALUE: greater than the input index
+    --------------------------------------
     Parameters:
         index: min threshold for filtering
 """
-@app.route('/countries/sw_lifs_gt/<float:index>', methods=['GET'])
+@core.route('/countries/sw_lifs_gt/<float:index>', methods=['GET'])
 def countries_sw_lifs_gt(index):
-    if index > 0:
+    if index > 0.0:
         # Query on the database according to the filters
         countries = session.query(Indicators.location, Indicators.country).filter(
             Indicators.indicator_code == 'SW_LIFS',
@@ -24,14 +25,26 @@ def countries_sw_lifs_gt(index):
         # Return the results
         return jsonify(countries)
     else:
-        return 'The index format is invalid!'
+        message = {
+            'status': 400,
+            'message': 'Bad Request: The index is invalid! Please, select a value greater than 0',
+        }
+        resp = jsonify(message)
+        resp.status_code = 400
+        return resp
 
-@app.errorhandler(404)
+"""
+    Returns a custom message for 404 error
+    --------------------------------------
+    Parameters:
+        None so far
+"""
+@core.errorhandler(404)
 def not_found(error):
     message = {
         'status': 404,
         'message': 'Not Found: ' + request.url,
     }
-    response = jsonify(message)
-    response.status_code = 404
-    return response
+    resp = jsonify(message)
+    resp.status_code = 404
+    return resp

@@ -7,3 +7,7 @@
 "MEX"     ,"Mexico"         ,"SW_LIFS"  ,"Life satisfaction"                                ,"L"      ,"Value"  ,"TOT"       ,"Total"     ,"AVSCORE"  ,"Average score","0"             ,"Units"    ,                       ,                  ,6.6    ,            ,
 
 SELECT * FROM indicators WHERE location='AUS' AND indicator_code='IW_HADI' and inequality_code='WMN';
+
+python3 -m aivo_test.main
+
+python3 -m pytest -s aivo_test/test/unit/test_countries.py

@@ -1,6 +1,6 @@
 # For class code and table
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, Float
+from sqlalchemy.ext.declarative import declarative_base
 
 # For database configuration
 from sqlalchemy import create_engine
