@@ -1,8 +1,10 @@
-# For routing and queries on the model
-from flask import Flask, jsonify, request
-from ...src.models.indicators import Indicators, session
+# For queries and response
+from db_setup import Session
+from app.models import Indicators
+from flask import Flask, request, jsonify
 
-core = Flask(__name__)
+# Application for routing
+application = Flask(__name__)
 
 """
     Returns a list of countries filtering by:
@@ -13,9 +15,10 @@ core = Flask(__name__)
     Parameters:
         index: min threshold for filtering
 """
-@core.route('/countries/sw_lifs_gt/<float:index>', methods=['GET'])
+@application.route('/countries/sw_lifs_gt/<float:index>', methods=['GET'])
 def countries_sw_lifs_gt(index):
     if index > 0.0:
+        session = Session()
         # Query on the database according to the filters
         countries = session.query(Indicators.location, Indicators.country).filter(
             Indicators.indicator_code == 'SW_LIFS',
@@ -39,7 +42,7 @@ def countries_sw_lifs_gt(index):
     Parameters:
         None so far
 """
-@core.errorhandler(404)
+@application.errorhandler(404)
 def not_found(error):
     message = {
         'status': 404,

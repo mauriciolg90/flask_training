@@ -11,7 +11,7 @@ def test_not_found_request(request):
     index = 'abc'
     # Make a request on the invalid URL
     url = 'http://localhost:5000/countries/sw_lifs_gt/{}'.format(index)
-    print('RUNNING ' + request.node.name + ' using ' + url)
+    print('[RUNNING] ' + request.node.name + ' using ' + url)
     resp = requests.get(url)
     # Assertions
     assert_that(resp.ok).is_false()
@@ -23,7 +23,7 @@ def test_countries_good_request(request):
     index = round(random.uniform(0.1, 10.0), 2)
     # Make a request on the specified URL
     url = 'http://localhost:5000/countries/sw_lifs_gt/{}'.format(index)
-    print('RUNNING ' + request.node.name + ' using ' + url)
+    print('[RUNNING] ' + request.node.name + ' using ' + url)
     resp = requests.get(url)
     # Assertions
     assert_that(resp.ok).is_true()
@@ -35,7 +35,7 @@ def test_countries_bad_request(request):
     index = 0.0
     # Make a request on the specified URL
     url = 'http://localhost:5000/countries/sw_lifs_gt/{}'.format(index)
-    print('RUNNING ' + request.node.name + ' using ' + url)
+    print('[RUNNING] ' + request.node.name + ' using ' + url)
     resp = requests.get(url)
     # Assertions
     assert_that(resp.ok).is_false()
@@ -47,7 +47,7 @@ def test_countries_all(request):
     index = 0.1
     # Make a request on the specified URL
     url = 'http://localhost:5000/countries/sw_lifs_gt/{}'.format(index)
-    print('RUNNING ' + request.node.name + ' using ' + url)
+    print('[RUNNING] ' + request.node.name + ' using ' + url)
     resp = requests.get(url)
     # Assertions
     assert_that(resp.ok).is_true()
@@ -60,7 +60,7 @@ def test_countries_none(request):
     index = 7.5
     # Make a request on the specified URL
     url = 'http://localhost:5000/countries/sw_lifs_gt/{}'.format(index)
-    print('RUNNING ' + request.node.name + ' using ' + url)
+    print('[RUNNING] ' + request.node.name + ' using ' + url)
     resp = requests.get(url)
     # Assertions
     assert_that(resp.ok).is_true()

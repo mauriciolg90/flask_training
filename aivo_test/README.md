@@ -4,16 +4,15 @@ This web application is used to filter countries according to indexs provided by
 
 ## Project hierarchy
 
-misc/  
-|-> input_file.csv  
-|-> script.sql  
-src/  
-|-> controllers/  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-> routes.py  
-|-> models/  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-> indicators.py  
+app/  
+|-> controllers.py  
+|-> models.py  
 test/  
 |-> unit/  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-> pytest.ini  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-> test_countries.py  
+util/  
+|-> input_file.csv  
+|-> script.sql  
+db_setup.py  
 main.py  

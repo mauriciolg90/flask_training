@@ -8,11 +8,11 @@
 
 SELECT * FROM indicators WHERE location='AUS' AND indicator_code='IW_HADI' and inequality_code='WMN';
 
-python3 -m aivo_test.main
+python3 main.py
 
-python3 -m pytest -s aivo_test/test/unit/test_countries.py
+python3 -m pytest -s test/unit/test_countries.py
 
-python3 -m pytest -s aivo_test/test/unit/test_countries.py -m status_code
-python3 -m pytest -s aivo_test/test/unit/test_countries.py -m countries_len
+python3 -m pytest -s test/unit/test_countries.py -m status_code
+python3 -m pytest -s test/unit/test_countries.py -m countries_len
 
-python3 -m pytest -s aivo_test/test/unit/test_countries.py::test_not_found_request
+python3 -m pytest -s test/unit/test_countries.py::test_not_found_request

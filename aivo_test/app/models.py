@@ -1,18 +1,16 @@
-# For class code and table
+# For models definition
 from sqlalchemy import Column, Integer, String, Float
 from sqlalchemy.ext.declarative import declarative_base
 
-# For database configuration
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-
-# Base class for the table
+# Base class for models
 Base = declarative_base()
 
-# Create the class and extend it from the base class
 class Indicators(Base):
-    __tablename__ = 'indicators'
 
+    __tablename__ = 'indicators'
+    __table_args__ = {'mysql_engine':'InnoDB'}
+
+    # Columns according to the real SQL table
     id = Column(Integer(), primary_key=True)
     location = Column(String(8), nullable=False)
     country = Column(String(24), nullable=False)
@@ -58,11 +56,3 @@ class Indicators(Base):
             'flag_codes' : self.flag_codes,
             'flags' : self.flags,
         }
-
-# Configure engine for the database (dialect and driver) FIXME: sacar la configuracion de un archivo
-engine = create_engine('mysql+pymysql://mauri:280490mg@localhost:3306/flask_test', echo=True)
-Base.metadata.create_all(engine)
-
-# Create a session for the engine
-Session = sessionmaker(bind=engine)
-session = Session()
