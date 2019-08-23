@@ -33,4 +33,10 @@ $ cd ~/aivo
 # Install and create the virtual environment (on mac/linux):
 $ sudo apt-get install python3-venv
 $ python3 -m venv flask_env
+
+# Activate the virtualenv created recently:
+$ source flask_env/bin/activate
+
+# NOTE: when you are done with your virtualenv, you can run:
+$ deactivate
 ```
